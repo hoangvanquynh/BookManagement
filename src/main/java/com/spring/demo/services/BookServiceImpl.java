@@ -28,16 +28,7 @@ public class BookServiceImpl implements BookServices{
         book.setContent(bookDTO.getContent());
         book.setDescription(bookDTO.getDescription());
         book.setTitle(bookDTO.getTitle());
-        Author author = new Author();
-        author.setAuthorName(bookDTO.getAuthor().getAuthorName());
-        author.setBirthDate(bookDTO.getAuthor().getBirthDate());
-        author.setPhoneName(bookDTO.getAuthor().getPhoneName());
-        author.setEmail(bookDTO.getAuthor().getEmail());
-        book.setAuthor(author);
-        List<Book> bookList = new ArrayList<>();
-        bookList.add(book);
-        author.setBookList(bookList);
-        authorRepository.save(author);
+        book.setAuthorName(bookDTO.getAuthorName());
         bookRepository.save(book);
         return bookDTO;
     }

@@ -1,43 +1,47 @@
 package com.spring.demo.entities;
 
 import com.spring.demo.BaseEntity;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
-import javax.persistence.*;
-
-@Entity
-@Table(name = "book")
+@Document(collection = "book")
 public class Book extends BaseEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long bookId;
+    private String id;
+    @Field("title")
     private String title;
+    @Field("price")
+    private Double price;
+    @Field("content")
     private String content;
+    @Field("book_name")
     private String bookName;
+    @Field("description")
     private String description;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "author_name", nullable = false)
-    private Author author;
+    private String authorName;
 
-    public Book(Long bookId, String title, String content, String bookName, Author author, String description) {
-        this.bookId = bookId;
+    public Book(String id, String title, Double price, String content, String bookName, String authorName, String description) {
+        this.id = id;
         this.title = title;
+        this.price = price;
         this.content = content;
         this.bookName = bookName;
-        this.author = author;
+        this.authorName = authorName;
         this.description = description;
     }
 
     public Book() {
     }
 
-    public Long getBookId() {
-        return bookId;
+    public String getId() {
+        return id;
     }
 
-    public void setBookId(Long bookId) {
-        this.bookId = bookId;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getTitle() {
@@ -46,6 +50,14 @@ public class Book extends BaseEntity {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
     }
 
     public String getContent() {
@@ -64,12 +76,12 @@ public class Book extends BaseEntity {
         this.bookName = bookName;
     }
 
-    public Author getAuthor() {
-        return author;
+    public String getAuthorName() {
+        return authorName;
     }
 
-    public void setAuthor(Author author) {
-        this.author = author;
+    public void setAuthorName(String authorName) {
+        this.authorName = authorName;
     }
 
     public String getDescription() {

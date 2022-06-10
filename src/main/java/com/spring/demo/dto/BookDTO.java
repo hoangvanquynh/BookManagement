@@ -1,14 +1,12 @@
 package com.spring.demo.dto;
 
-import com.spring.demo.entities.Author;
-
 public class BookDTO {
 
     private String title;
     private String content;
     private String bookName;
     private String description;
-    private Author author;
+    private String authorName;
 
     public String getTitle() {
         return title;
@@ -42,11 +40,11 @@ public class BookDTO {
         this.description = description;
     }
 
-    public Author getAuthor() {
-        return author;
+    public String getAuthorName() {
+        return authorName;
     }
 
-    public void setAuthor(Author author) {
-        this.author = author;
+    public void setAuthorName(String authorName) {
+        this.authorName = authorName;
     }
 }

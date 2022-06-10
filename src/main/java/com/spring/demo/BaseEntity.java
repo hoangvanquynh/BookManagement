@@ -1,10 +1,8 @@
 package com.spring.demo;
 
-import javax.persistence.MappedSuperclass;
 import java.time.Instant;
 import java.util.Date;
 
-@MappedSuperclass
 public class BaseEntity {
 
     private Date createDate = Date.from(Instant.now());
