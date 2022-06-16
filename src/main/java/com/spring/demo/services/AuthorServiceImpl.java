@@ -3,6 +3,7 @@ package com.spring.demo.services;
 import com.spring.demo.dao.AuthorRepository;
 import com.spring.demo.dto.AuthorDTO;
 import com.spring.demo.entities.Book;
+import com.spring.demo.mapper.BookMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
