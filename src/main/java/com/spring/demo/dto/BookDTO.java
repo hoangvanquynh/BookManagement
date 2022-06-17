@@ -1,9 +1,13 @@
 package com.spring.demo.dto;
 
+import javax.validation.constraints.NotBlank;
+
 public class BookDTO {
 
+    @NotBlank(message = "title not blank")
     private String title;
     private String content;
+    @NotBlank(message = "book name not blank")
     private String bookName;
     private String description;
     private String authorName;

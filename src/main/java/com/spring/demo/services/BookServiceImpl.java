@@ -1,9 +1,11 @@
 package com.spring.demo.services;
 
+import com.google.common.base.Strings;
 import com.spring.demo.dao.AuthorRepository;
 import com.spring.demo.dao.BookRepository;
 import com.spring.demo.dto.BookDTO;
 import com.spring.demo.entities.Book;
+import com.spring.demo.exception.ManagementException;
 import com.spring.demo.mapper.BookMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,15 +30,17 @@ public class BookServiceImpl implements BookServices{
 
     @Override
     public BookDTO createBook(BookDTO bookDTO) {
-/*        Book book = new Book();
-        book.setBookName(bookDTO.getBookName());
-        book.setContent(bookDTO.getContent());
-        book.setDescription(bookDTO.getDescription());
-        book.setTitle(bookDTO.getTitle());
-        book.setAuthorName(bookDTO.getAuthorName());*/
         Book book = bookMapper.toEntity(bookDTO);
+        validBookDTO(bookDTO);
         bookRepository.save(book);
         return bookDTO;
+    }
+
+    private boolean validBookDTO(BookDTO bookDTO) {
+        if (Strings.isNullOrEmpty(bookDTO.getContent())) {
+            throw new ManagementException();
+        }
+        return true;
     }
 
     @Override
