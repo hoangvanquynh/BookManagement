@@ -12,6 +12,17 @@ public class BookDTO {
     private String description;
     private String authorName;
 
+    public BookDTO(String title, String content, String bookName, String description, String authorName) {
+        this.title = title;
+        this.content = content;
+        this.bookName = bookName;
+        this.description = description;
+        this.authorName = authorName;
+    }
+
+    public BookDTO() {
+    }
+
     public String getTitle() {
         return title;
     }

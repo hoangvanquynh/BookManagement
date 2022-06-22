@@ -7,7 +7,6 @@ import com.spring.demo.dto.BookDTO;
 import com.spring.demo.entities.Book;
 import com.spring.demo.exception.ManagementException;
 import com.spring.demo.mapper.BookMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,23 +14,23 @@ import java.util.List;
 @Service
 public class BookServiceImpl implements BookServices{
 
-    @Autowired
-    private BookRepository bookRepository;
+    private final BookRepository bookRepository;
 
-    @Autowired
-    private AuthorRepository authorRepository;
+    private final AuthorRepository authorRepository;
 
     private final BookMapper bookMapper;
 
-    public BookServiceImpl(BookMapper bookMapper) {
+    public BookServiceImpl(BookRepository bookRepository, AuthorRepository authorRepository, BookMapper bookMapper) {
+        this.bookRepository = bookRepository;
+        this.authorRepository = authorRepository;
         this.bookMapper = bookMapper;
     }
 
 
     @Override
     public BookDTO createBook(BookDTO bookDTO) {
-        Book book = bookMapper.toEntity(bookDTO);
         validBookDTO(bookDTO);
+        Book book = bookMapper.toEntity(bookDTO);
         bookRepository.save(book);
         return bookDTO;
     }
